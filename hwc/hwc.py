@@ -54,14 +54,7 @@ class Distribute:
 
     def get_possibilities(self):
         """Get all possibilities."""
-        return self.cassign
-
-    def display_optimal_possibilities(self):
-        """Display best possibilities."""
-        best = self.get_optimal_possibilities()
-        print(f'{len(best)} best choices:')
-        dic = {n: [best[i][j] for i in range(len(best))] for j, n in enumerate(self.names)}
-        return pandas.DataFrame(dic)
+        return self.vassign
 
     def get_optimal_possibilities(self):
         """Get a list of best possibilities"""
@@ -70,6 +63,21 @@ class Distribute:
             best = np.array(self.vassign)[np.array(pertinence) == min(pertinence)]
             return best
         return []
+
+    def display_possibilities(self):
+        """Display all possibilities."""
+        best = self.get_possibilities()
+        print(f'{len(best)} choices:')
+        dic = {n: [best[i][j] for i in range(len(best))] for j, n in enumerate(self.names)}
+        return pandas.DataFrame(dic)
+
+    def display_optimal_possibilities(self):
+        """Display best possibilities."""
+        best = self.get_optimal_possibilities()
+        print(f'{len(best)} best choices:')
+        dic = {n: [best[i][j] for i in range(len(best))] for j, n in enumerate(self.names)}
+        return pandas.DataFrame(dic)
+
 
 
 if __name__ == "__main__":
