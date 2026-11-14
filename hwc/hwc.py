@@ -22,6 +22,10 @@
 """
 -----------
 Help With Choice (HWC)
+
+TODO :
+    - Modifier le poid lorsqu'il s'agit d'un binome (x2) lors du choix optimal
+
 -----------
 """
 
@@ -44,7 +48,7 @@ class Distribute:
         self.choices = list(data.values())
         self.pmin = pmin
 
-        self.choices = [g[:pmin] if len(g)>pmin else g for g in self.choices]
+        self.choices = [g[:pmin] if len(g) > pmin else g for g in self.choices]
         self.vassign = [seq for seq in itertools.product(*self.choices)
                         if len(seq) == len(set(seq))]
         self.cassign = [[self.choices[i].index(self.vassign[j][i]) for i in range(len(self.choices))]
